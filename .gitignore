@@ -29,6 +29,7 @@
 /vendor/cache
 /vendor/rails
 *.rbc
+.svn
 
 /.bundle
 
