@@ -26,7 +26,20 @@ RedmineApp::Application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   # No email in production log
-  config.action_mailer.logger = nil
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.smtp_settings = {
+  :address  => "smtp.mandrillapp.com",
+  :port  => '587',
+  :user_name  => ENV['MANDRILL_USERNAME'],
+  :password  => ENV['MANDRILL_APIKEY'],
+  :domain => 'heroku.com',
+  :authentication  => :plain
+}
+
 
   config.active_support.deprecation = :log
 end
